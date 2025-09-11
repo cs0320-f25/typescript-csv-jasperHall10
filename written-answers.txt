@@ -1,0 +1,6 @@
+Task B 
+Step 1:
+- Should include a way to include commas in an entry
+- Should include a way for the caller to choose how the data is parsed
+- Should allow for multiple ways in which the data can be returned
+- Should have an option allowing for the caller to specify a column that they specifically want returned
