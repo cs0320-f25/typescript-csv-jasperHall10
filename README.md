@@ -38,9 +38,9 @@ choosing how the data is returned/stored). Most of the stuff that I missed had t
 ### Design Choices
 
 ### 1340 Supplement
-
+n/a
 - #### 1. Correctness
-
+I would define a CSVParsers correctness based mostly on its ability to correctly categorize the data it recieves. In our sense it would be heavily reliant on how much the schema works to classify/categorize the data into the different attributes of the given type. That is at least how our parser works right now. Overall parsers correctness would also be impacted by other things, the one mainly popping up to me now is if the parser correctly partitions (this is basically the comma problem). I think the tests should ensure that type errors are only thrown if the CSV is incorrect, that the right number of rows are included, that each row contains the correct object/type, that each instance of a type contains the correct data in the correct place, etc.
 - #### 2. Random, On-Demand Generation
 
 - #### 3. Overall experience, Bugs encountered and resolved
