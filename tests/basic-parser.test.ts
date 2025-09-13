@@ -51,20 +51,22 @@ test("parseCSV blankspace included in entries", async () => {
   }
 });
 
-const PersonRowSchema = z.tuple([z.string(), z.string().optional()])
-                                .transform( tup => ({name: tup[0], quote: tup[1]}));
-test("parseCSV with quote schema", async () => {
+// Schema converting tuple of length two into name / age object
+const PersonRowSchema = z.tuple([z.string(), z.coerce.number()])
+                                .transform( tup => ({name: tup[0], age: tup[1]}));
+test("parseCSV with person schema and bad age values", async () => {
   const results = await parseCSV(PEOPLE_CSV_PATH, PersonRowSchema);
 
   expect(results).toBeInstanceOf(ZodError);
 });
 
-test("parseCSV with person schema", async () => {
+test("parseCSV with person schema and good age values", async () => {
   const results = await parseCSV(SIMPLE_PEOPLE_CSV_PATH, PersonRowSchema);
 
   expect(results).toHaveLength(4);
 });
 
+// Schema converting tuple of length two into name / quote object
 const FigureQuoteSchema = z.tuple([z.string(), z.string().optional()])
                                 .transform( tup => ({name: tup[0], quote: tup[1]}));
 test("parseCSV with quote schema", async () => {

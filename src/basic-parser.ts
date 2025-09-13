@@ -44,9 +44,7 @@ export async function parseCSV<T>(path: string, schema: ZodType<T> | undefined):
   // More on this in class soon!
   for await (const line of rl) {
     const values = line.split(",").map((v) => v.trim());
-    console.log(values);
     const valid = schema.safeParse(values);
-    console.log(valid);
     if (valid.success) {
       result.push(valid.data);
     } else {
